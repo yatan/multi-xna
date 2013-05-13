@@ -1,0 +1,5 @@
+F:\Mis documentos\Visual Studio 2010\Projects\ConsoleServer\ConsoleServer\bin\Debug\ConsoleServer.exe
+F:\Mis documentos\Visual Studio 2010\Projects\ConsoleServer\ConsoleServer\bin\Debug\ConsoleServer.pdb
+F:\Mis documentos\Visual Studio 2010\Projects\ConsoleServer\ConsoleServer\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\Mis documentos\Visual Studio 2010\Projects\ConsoleServer\ConsoleServer\obj\x86\Debug\ConsoleServer.exe
+F:\Mis documentos\Visual Studio 2010\Projects\ConsoleServer\ConsoleServer\obj\x86\Debug\ConsoleServer.pdb

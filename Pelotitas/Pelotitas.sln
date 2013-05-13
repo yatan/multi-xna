@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pelotitas", "Pelotitas\Pelotitas\Pelotitas.csproj", "{A7C41FEE-31D8-4AE1-9D83-D1F15F4BBAAD}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "PelotitasContent", "Pelotitas\PelotitasContent\PelotitasContent.contentproj", "{7F5CC1C9-6B29-44A0-99C0-D076423789C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7C41FEE-31D8-4AE1-9D83-D1F15F4BBAAD}.Debug|x86.ActiveCfg = Debug|x86
+		{A7C41FEE-31D8-4AE1-9D83-D1F15F4BBAAD}.Debug|x86.Build.0 = Debug|x86
+		{A7C41FEE-31D8-4AE1-9D83-D1F15F4BBAAD}.Release|x86.ActiveCfg = Release|x86
+		{A7C41FEE-31D8-4AE1-9D83-D1F15F4BBAAD}.Release|x86.Build.0 = Release|x86
+		{7F5CC1C9-6B29-44A0-99C0-D076423789C5}.Debug|x86.ActiveCfg = Debug|x86
+		{7F5CC1C9-6B29-44A0-99C0-D076423789C5}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
