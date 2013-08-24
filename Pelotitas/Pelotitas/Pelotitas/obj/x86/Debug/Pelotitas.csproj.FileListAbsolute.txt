@@ -6,3 +6,15 @@ F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\
 F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\Pelotitas.exe
 F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\Pelotitas.pdb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\pelota.xnb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Pelotitas.exe
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Pelotitas.pdb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Lidgren.Network.dll
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\Pelotitas.exe
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\obj\x86\Debug\Pelotitas.pdb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\dedo.xnb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\pantalla.xnb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\Fuente1.xnb
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\Menu\notificacion.xnb

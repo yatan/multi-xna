@@ -11,10 +11,13 @@ namespace ConsoleServer
         private int pos_x;
         private int pos_y;
         public int mapa;
+        public string nick;
+        private bool logeado;
 
         public Player(String UiD)
         {
             this.UID = UiD;
+            this.logeado = false;
         }
 
         public void updatePos(int pos_X, int pos_Y)
@@ -23,6 +26,16 @@ namespace ConsoleServer
             this.pos_y = pos_Y;
         }
 
+        public void login(string Nick)
+        {
+            this.nick = Nick;
+            this.logeado = true;
+        }
+
+        public bool is_loged()
+        {
+            return this.logeado;
+        }
         
     }
 }

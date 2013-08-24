@@ -29,16 +29,24 @@ namespace Pelotitas
 
         Texture2D texturePelota;
         Vector2 miPosicion;
+        SpriteFont font;
 
         float totaltiempo = 0;
         float tiempoanterior = 0;
         float contadorticks = 0;
         float ticks = 0;
 
+        //Menu 0 para activar menu- 1 para desactivar
+        Menu menu;
+        private int menu_cont = 0;
+        private Texture2D fondo;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.graphics.PreferredBackBufferWidth = 800;
+            this.graphics.PreferredBackBufferHeight = 600;
         }
 
         /// <summary>
@@ -57,7 +65,7 @@ namespace Pelotitas
             cliente = new NetClient(config);
             cliente.Start();
             NetOutgoingMessage hail = cliente.CreateMessage("This is the hail message");
-            cliente.Connect("199.195.254.103", 14242, hail);
+            cliente.Connect("127.0.0.1", 14242, hail);
             mi_id = NetUtility.ToHexString(cliente.UniqueIdentifier);
             System.Console.WriteLine("Mi id de conexion es: " + mi_id);
 
@@ -75,7 +83,10 @@ namespace Pelotitas
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texturePelota = Content.Load<Texture2D>("pelota");
+            fondo = this.Content.Load<Texture2D>("pantalla");
+            font = this.Content.Load<SpriteFont>("Fuente1");
             // TODO: use this.Content to load your game content here
+            menu = new Menu(0, Content, this);
         }
 
         /// <summary>
@@ -95,50 +106,94 @@ namespace Pelotitas
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            teclado = Keyboard.GetState();
-
-            // Allows the game to exit
-            if (teclado.IsKeyDown(Keys.Escape))
+            if (menu_cont == 0)
             {
-                this.Exit();
+                if (cliente.ConnectionStatus == NetConnectionStatus.Disconnected)
+                {
+                    menu.notificar("No hay conexion con el servidor");
+                    menu.hayConexion = false;
+                }
+                else if (cliente.ConnectionStatus == NetConnectionStatus.Connected)
+                {
+                    menu.hayConexion = true;
+                }
+                menu.Update();
+                if (menu.Estado() == true)
+                {
+
+                    if (cliente.ConnectionStatus == NetConnectionStatus.Connected)
+                    {
+                        NetOutgoingMessage om = cliente.CreateMessage();
+                        om.Write("LOGIN");
+                        om.Write(menu.nick.ToString());
+                        cliente.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
+                        Output("Sending '" + menu.nick + "'");
+                        cliente.FlushSendQueue();
+
+                        menu_cont = 1;
+                    }
+                    else
+                    {
+                        menu.Reset();
+                        //ERROR no te puedes logear ya que no existe conexion
+                        menu.notificar("Error en la conexion");
+                        //Output("ERROR");
+                    }
+                }
             }
-            if (teclado.IsKeyDown(Keys.Left))
+            else
             {
-                miPosicion.X-=2;
+                // Allows the game to exit
+                teclado = Keyboard.GetState();
+
+                // Allows the game to exit
+                if (teclado.IsKeyDown(Keys.Escape))
+                {
+                    cliente.Disconnect("QUIT");
+                    this.Exit();
+                }
+                if (teclado.IsKeyDown(Keys.Left))
+                {
+                    miPosicion.X -= 2;
+                }
+                if (teclado.IsKeyDown(Keys.Right))
+                {
+                    miPosicion.X += 2;
+                }
+                if (teclado.IsKeyDown(Keys.Up))
+                {
+                    miPosicion.Y -= 2;
+                }
+                if (teclado.IsKeyDown(Keys.Down))
+                {
+                    miPosicion.Y += 2;
+                }
+
+
+                //ENVIO DE DATOS CADA 1 SEGUNDO
+                tiempoanterior = totaltiempo;
+
+                totaltiempo = (float)gameTime.TotalGameTime.TotalSeconds;
+
+                contadorticks = totaltiempo - tiempoanterior;
+                ticks += contadorticks;
+
+
+                if (ticks > 0.05)
+                {
+                    NetOutgoingMessage om = cliente.CreateMessage();
+                    om.Write("PELOTA");
+                    om.Write(miPosicion.X.ToString());
+                    om.Write(miPosicion.Y.ToString());
+                    cliente.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
+                    //Output("Sending '" + text + "'");
+                    cliente.FlushSendQueue();
+                    //Console.WriteLine(contadorticks.ToString());
+                    ticks = 0f;
+                }
+
+
             }
-            if (teclado.IsKeyDown(Keys.Right))
-            {
-                miPosicion.X+=2;
-            }
-
-
-
-            
-            //ENVIO DE DATOS CADA 1 SEGUNDO
-            tiempoanterior = totaltiempo;
-
-            totaltiempo = (float)gameTime.TotalGameTime.TotalSeconds;
-
-            contadorticks = totaltiempo - tiempoanterior;
-            ticks += contadorticks;
-
-
-            if (ticks > 0.05)
-            {
-                NetOutgoingMessage om = cliente.CreateMessage();
-                om.Write("PELOTA");
-                om.Write(miPosicion.X.ToString());
-                om.Write(miPosicion.Y.ToString());
-                cliente.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
-                //Output("Sending '" + text + "'");
-                cliente.FlushSendQueue();
-                //Console.WriteLine(contadorticks.ToString());
-                ticks = 0f;
-            }
-           
-            
-
             base.Update(gameTime);
         }
 
@@ -150,16 +205,30 @@ namespace Pelotitas
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-
-            spriteBatch.Draw(texturePelota, miPosicion, Color.Red);
-            foreach (Pelele pelele in listaPeleles)
+            if (menu_cont == 0)
             {
-                spriteBatch.Draw(texturePelota, pelele.getPosition(), Color.Green);
+                spriteBatch.Begin();
+                spriteBatch.Draw(fondo, new Rectangle(0, 0, 800, 600), Color.White);
+                menu.Draw(spriteBatch);
+                spriteBatch.End();
             }
 
-            spriteBatch.End();
+            else
+            {
+
+                // TODO: Add your drawing code here
+                spriteBatch.Begin();
+
+                spriteBatch.Draw(texturePelota, miPosicion, Color.Red);
+                foreach (Pelele pelele in listaPeleles)
+                {
+                    spriteBatch.Draw(texturePelota, pelele.getPosition(), Color.Green);
+                    spriteBatch.DrawString(font, pelele.nick, pelele.getPosition(), Color.Black);
+                    //Output(pelele.nick);
+                }
+
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
 
@@ -194,24 +263,40 @@ namespace Pelotitas
 
                         break;
                     case NetIncomingMessageType.Data:
-                        string chat = im.ReadString();
-                        string uid = im.ReadString();
-                        string posX = im.ReadString();
-                        string posY = im.ReadString();
-                        Boolean isRegistred = false;
-                        foreach (Pelele pelele in listaPeleles)
+                        switch (im.ReadString())
                         {
-                            if (pelele.uid == uid)
-                            {
-                                pelele.setPosition(Convert.ToInt16(posX), Convert.ToInt16(posY));
-                                isRegistred = true;
-                            }
+                            case "LOGOUT":
+                                string uid_logout = im.ReadString();
+                                foreach (Pelele pelele in listaPeleles.ToList())
+                                {
+                                    if (pelele.uid == uid_logout)
+                                    {
+                                        listaPeleles.Remove(pelele);
+                                    }
+                                }
+                                break;
+                            case "PELOTA":
+                                string uid = im.ReadString();
+                                string nick = im.ReadString();
+                                string posX = im.ReadString();
+                                string posY = im.ReadString();
+                                Boolean isRegistred = false;
+                                foreach (Pelele pelele in listaPeleles)
+                                {
+                                    if (pelele.uid == uid)
+                                    {
+                                        pelele.setPosition(Convert.ToInt16(posX), Convert.ToInt16(posY));
+                                        isRegistred = true;
+                                    }
+                                }
+                                if (isRegistred == false)
+                                {
+                                    listaPeleles.Add(new Pelele(uid,nick));
+                                }
+                                break;
                         }
-                        if (isRegistred == false)
-                        {
-                            listaPeleles.Add(new Pelele(uid));
-                        }
-                        Output(chat);
+                        
+                        //Output(chat);
                         break;
                     default:
                         Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");

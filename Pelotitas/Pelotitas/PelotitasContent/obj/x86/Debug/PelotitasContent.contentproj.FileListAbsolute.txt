@@ -1,1 +1,2 @@
 F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\PelotitasContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\PelotitasContent\obj\x86\Debug\ResolveAssemblyReference.cache

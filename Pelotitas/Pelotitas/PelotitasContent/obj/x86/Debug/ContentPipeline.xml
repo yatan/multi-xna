@@ -7,8 +7,44 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\pelota.xnb</Output>
+      <Output>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\pelota.xnb</Output>
       <Time>2013-05-05T16:58:13.9250157+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dedo.png</Source>
+      <Name>dedo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\dedo.xnb</Output>
+      <Time>2013-08-20T01:21:00.2236328+02:00</Time>
+    </Item>
+    <Item>
+      <Source>pantalla.png</Source>
+      <Name>pantalla</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\pantalla.xnb</Output>
+      <Time>2013-08-20T01:21:00.227539+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fuente1.spritefont</Source>
+      <Name>Fuente1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\Fuente1.xnb</Output>
+      <Time>2013-08-20T01:22:19.40625+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\notificacion.png</Source>
+      <Name>Menu\notificacion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\Menu\notificacion.xnb</Output>
+      <Time>2013-08-21T02:37:31.3349609+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -16,39 +52,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\PelotitasContent\</RootDirectory>
-      <LoggerRootDirectory>F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\</LoggerRootDirectory>
-      <IntermediateDirectory>F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\PelotitasContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>F:\Mis documentos\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\PelotitasContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\PelotitasContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Fran\Documents\Visual Studio 2010\Projects\Pelotitas\Pelotitas\Pelotitas\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-06-19T15:18:57.2685546+02:00</Value>
+        <Value>2013-08-19T01:01:06.4541485+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

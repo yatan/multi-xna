@@ -1,1 +1,5 @@
 Content\pelota.xnb
+Content\dedo.xnb
+Content\pantalla.xnb
+Content\Fuente1.xnb
+Content\Menu\notificacion.xnb

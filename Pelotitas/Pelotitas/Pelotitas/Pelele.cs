@@ -10,10 +10,12 @@ namespace Pelotitas
     {
         public string uid;
         private Vector2 posicion;
+        public string nick;
 
-        public Pelele(string uid)
+        public Pelele(string uid, string Nick)
         {
             this.uid = uid;
+            this.nick = Nick;
         }
 
         public void setPosition(int posX, int posY)

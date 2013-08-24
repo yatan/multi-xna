@@ -12,7 +12,7 @@ namespace ConsoleServer
 
         private static NetServer s_server;
 
-        static Player jugador;
+        //static Player jugador;
         static List<Player> lista_jugadores;
 
         private static void Application_Idle()
@@ -22,6 +22,7 @@ namespace ConsoleServer
                 NetIncomingMessage im;
                 while ((im = s_server.ReadMessage()) != null)
                 {
+                    String[] envio;
                     // handle incoming message
                     switch (im.MessageType)
                     {
@@ -45,12 +46,20 @@ namespace ConsoleServer
                                 string reason = im.ReadString();
                                 Output(NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier) + " " + status + ": " + reason);
                             }
-                            
+                            if (status == NetConnectionStatus.Disconnected)
+                            {
+                                Player player = new Player(NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier));
+                                envio = new String[2];
+                                envio[0] = "LOGOUT";
+                                envio[1] = NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier);
+                                enviar(envio, im);
+                                lista_jugadores.Remove(player);
+                            }
                             break;
                         case NetIncomingMessageType.Data:
                             // incoming chat message from a client
                             string chat = im.ReadString();
-                            String[] envio;
+                            //String[] envio;
                             if (chat == "POS")
                             {
                                 //Buscamos en la lista de jugadores el que envia los datos para almacenarlos
@@ -58,25 +67,33 @@ namespace ConsoleServer
                                 {
                                     if (jugador.UID == NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier))
                                     {
-                                        String pos_x = im.ReadString();
-                                        String pos_y = im.ReadString();
-                                        String mapa = im.ReadString();
+                                        if (jugador.is_loged() == false)
+                                        {
+                                            envio = new String[1];
+                                            envio[0] = "LOGOUT";
+                                            enviar(envio, im);
+                                        }
+                                        else
+                                        {
+                                            String pos_x = im.ReadString();
+                                            String pos_y = im.ReadString();
+                                            String mapa = im.ReadString();
 
-                                        envio = new String[4];
-                                        jugador.updatePos(Convert.ToInt16(pos_x), Convert.ToInt16(pos_y));
-                                        jugador.mapa = Convert.ToInt16(mapa);
+                                            envio = new String[4];
+                                            jugador.updatePos(Convert.ToInt16(pos_x), Convert.ToInt16(pos_y));
+                                            jugador.mapa = Convert.ToInt16(mapa);
 
 
-                                        envio[0] = "POS";
-                                        envio[1] = pos_x.ToString();
-                                        envio[2] = pos_y.ToString();
-                                        envio[3] = jugador.mapa.ToString();
+                                            envio[0] = "POS";
+                                            envio[1] = pos_x.ToString();
+                                            envio[2] = pos_y.ToString();
+                                            envio[3] = jugador.mapa.ToString();
 
-                                        Output("Posicion x: " + pos_x + " y: " + pos_y + " mapa: " + mapa);
+                                            Output("Posicion x: " + pos_x + " y: " + pos_y + " mapa: " + mapa);
 
-                                        //Enviamos la posicion al resto de la gente
-                                        enviar(envio, im);
-
+                                            //Enviamos la posicion al resto de la gente
+                                            enviar(envio, im);
+                                        }
                                     }
                                 }
 
@@ -88,27 +105,62 @@ namespace ConsoleServer
                                 {
                                     if (jugador.UID == NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier))
                                     {
-                                        String pos_x = im.ReadString();
-                                        String pos_y = im.ReadString();
-                                        
-                                        envio = new String[4];
-                                        jugador.updatePos(Convert.ToInt16(pos_x), Convert.ToInt16(pos_y));
-                                        
+                                        if (jugador.is_loged() == false)
+                                        {
+                                            envio = new String[1];
+                                            envio[0] = "LOGOUT";
+                                            enviar(envio, im);
+                                        }
+                                        else
+                                        {
+                                            String pos_x = im.ReadString();
+                                            String pos_y = im.ReadString();
+
+                                            envio = new String[5];
+                                            jugador.updatePos(Convert.ToInt16(pos_x), Convert.ToInt16(pos_y));
 
 
-                                        envio[0] = "PELOTA";
-                                        envio[1] = jugador.UID;
-                                        envio[2] = pos_x.ToString();
-                                        envio[3] = pos_y.ToString();
-                                        
 
-                                        Output("Posicion x: " + pos_x + " y: " + pos_y);
+                                            envio[0] = "PELOTA";
+                                            envio[1] = jugador.UID;
+                                            envio[2] = jugador.nick;
+                                            envio[3] = pos_x.ToString();
+                                            envio[4] = pos_y.ToString();
 
-                                        //Enviamos la posicion al resto de la gente
-                                        enviar(envio, im);
+                                            //Eliminar debug text
+                                            Output("Posicion x: " + pos_x + " y: " + pos_y);
 
+                                            //Enviamos la posicion al resto de la gente
+                                            enviar(envio, im);
+                                        }
                                     }
                                 }
+                            }
+                            else if (chat == "LOGIN")
+                            {
+                                //Nick de logeo
+                                String log_nick = im.ReadString();
+
+                                //Buscamos si ya esta logeado
+                                foreach (Player jugador in lista_jugadores)
+                                {
+                                    if (jugador.nick == log_nick)
+                                    {
+                                        if (jugador.UID != NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier))
+                                        {
+                                            //Se elimina el jugador del array de jugadores
+                                            //jugador.UID = NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier);
+                                            //jugador.login(log_nick);
+                                        }
+                                    }
+                                    Output("Login de:" + log_nick);
+                                    jugador.login(log_nick);
+                                }
+                                /*
+                                Player player = new Player(NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier));
+                                lista_jugadores.Add(player);
+                                 * */
+                                
                             }
                             else
                             {
